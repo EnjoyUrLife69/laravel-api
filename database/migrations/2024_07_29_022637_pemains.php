@@ -14,11 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pemains', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('nama_pemain');
+            $table->string('foto')->nullable();
+            $table->date('tgl_lahir');
+            $table->integer('harga_pasar');
+            $table->enum('posisi', ['GK', 'DF', 'MF', 'FW']);
+            $table->string('negara');
+            $table->unsignedBigInteger('id_klub');
+            $table->foreign('id_klub')->references('id')->on('klubs')->onDelete('cascade');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

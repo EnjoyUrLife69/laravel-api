@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fans', function (Blueprint $table) {
+        Schema::create('klubs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_club');
+            $table->string('logo')->nullable();
+            $table->unsignedBigInteger('id_liga');
+            $table->foreign('id_liga')->references('id')->on('ligas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fans');
+        Schema::dropIfExists('klubs');
     }
 };

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('ligas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_liga');
+            $table->string('negara');
             $table->timestamps();
         });
     }
