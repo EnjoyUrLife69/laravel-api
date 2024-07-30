@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Pemain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class PemainController extends Controller
 {
@@ -50,6 +52,7 @@ class PemainController extends Controller
             'foto' => 'required|image|max:2048',
             'tgl_lahir' => 'required',
             'harga_pasar' => 'required',
+            'negara' => 'required',
             'id_klub' => 'required',
         ]);
 
@@ -69,12 +72,13 @@ class PemainController extends Controller
             $pemain->foto = $path;
             $pemain->tgl_lahir = $request->tgl_lahir;
             $pemain->harga_pasar = $request->harga_pasar;
+            $pemain->negara = $request->negara;
             $pemain->id_klub = $request->id_klub;
             $pemain->save();
             return response()->json([
                 'success' => true,
-                'message' => 'Klub created successfully',
-                'data' => $klub,
+                'message' => 'Pemain created successfully',
+                'data' => $pemain,
             ], 201);
         } catch (\Exception $e) {
             return response()->json([
@@ -194,7 +198,7 @@ class PemainController extends Controller
             $pemain->delete();
             return response()->json([
                 'success' => true,
-                'message' => 'Detail Pemain',
+                'message' => 'Data berhasil Dihapus',
                 'data' => $pemain,
             ], 200);
         } catch (\Exception $e) {
