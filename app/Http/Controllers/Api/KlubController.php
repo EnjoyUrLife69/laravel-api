@@ -155,7 +155,7 @@ class KlubController extends Controller
             $klub->save();
             return response()->json([
                 'success' => true,
-                'message' => 'Klub created successfully',
+                'message' => 'Klub updated successfully',
                 'data' => $klub,
             ], 201);
 

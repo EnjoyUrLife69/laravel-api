@@ -153,25 +153,26 @@ class PemainController extends Controller
         }
 
         try {
-            $klub = Klub::findOrFail($id);
+            $pemain = Pemain::findOrFail($id);
 
             if ($request->hasFile('foto')) {
                 //delete poto / foto lama
-                Storage::delete($klub->foto);
+                Storage::delete($pemain->foto);
                 $path = $request->file('foto')->store('public/foto');
-                $klub->foto = $path;
+                $pemain->foto = $path;
             }
 
             $pemain->nama_pemain = $request->nama_pemain;
             $pemain->posisi = $request->posisi;
             $pemain->tgl_lahir = $request->tgl_lahir;
             $pemain->harga_pasar = $request->harga_pasar;
+            $pemain->negara = $request->negara;
             $pemain->id_klub = $request->id_klub;
             $pemain->save();
             return response()->json([
                 'success' => true,
-                'message' => 'Klub created successfully',
-                'data' => $klub,
+                'message' => 'Klub Updated successfully',
+                'data' => $pemain,
             ], 201);
 
         } catch (\Exception $e) {
