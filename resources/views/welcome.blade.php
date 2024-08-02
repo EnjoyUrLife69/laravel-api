@@ -16,7 +16,7 @@
 
                     {{ __('You are logged in!') }} --}}
                     
-                    Welcome !!! @guest
+                    Welcome , @guest
                         @else {{ Auth::user()->name }}
                     @endguest
                 </div>
